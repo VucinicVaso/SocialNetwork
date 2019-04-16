@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md network-navbar text-white navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+<nav class="navbar navbar-expand-md network-navbar text-white">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url('home') }}">
             <i class="fab fa-facebook-f" style="color: white;"></i>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -8,7 +8,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
+            <!-- Left Side of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <form class="form-inline" action="{{ url('friends/index/search')}}" method="GET">
@@ -22,7 +22,7 @@
                 </li>
             </ul>
 
-            <!-- Right Side Of Navbar -->
+            <!-- Right Side of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 <li class="nav-item">
@@ -65,7 +65,7 @@
                         <a href="{{ url('profile/edit') }}" class="dropdown-item">Settings</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 

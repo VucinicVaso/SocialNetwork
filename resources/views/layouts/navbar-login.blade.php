@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md network-navbar text-white navbar-laravel" style="height: 120px;">
+<nav class="navbar navbar-expand-md network-navbar text-white" style="height: 120px;">
     <div class="container-fluid">
         <a class="network-logo text-white" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto"> </ul>
+            <ul class="navbar-nav mr-auto"></ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -19,7 +19,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -30,7 +30,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
@@ -46,7 +46,7 @@
                                 @endif    
                             </div>                                
 
-                            <div class="col-md-4 mt-4 pt-3">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mt-4 pt-3">
                                 <button type="submit" class="btn btn-primary w-100">
                                     {{ __('Login') }}
                                 </button>
