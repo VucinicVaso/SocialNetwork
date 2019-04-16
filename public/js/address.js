@@ -1,1 +1,1 @@
-const ADDRESS = "http://localhost:8000/";
+const ADDRESS = "http://localhost:8000";
