@@ -53,10 +53,7 @@ class HomeController extends Controller
     /* about user page */
     public function about()
     {
-        $data = [
-            'user' => User::findOrFail(auth()->user()->id)
-        ];
-        return view('users.about')->with($data);
+        return view('users.about');
     }
 
 }
