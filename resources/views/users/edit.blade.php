@@ -28,7 +28,6 @@
 
                         <!-- User -->
                         <button class="btn btn-link w-100" data-toggle="collapse" data-target="#user">User</button>
-
                         <div id="user" class="collapse">
                         <form action="{{ url('profile/update/user') }}" method="POST">
                             @csrf
@@ -134,7 +133,38 @@
                                     <strong>{{ $errors->first('gender') }}</strong>
                                 </span>
                             @endif
-                            </div> 
+                            </div>
+                            <div class="form-group row">
+                                <label for="city" class="col-md-4">City:</label>
+                                <input type="text" name="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }} col-md-8" value="{{ auth()->user()->city }}">
+                            @if ($errors->has('city'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('city') }}</strong>
+                                </span>
+                            @endif 
+                            </div>
+                            <div class="form-group row">
+                                <label for="country" class="col-md-4">Country:</label>
+                                <input type="text" name="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }} col-md-8" value="{{ auth()->user()->country }}">
+                           @if ($errors->has('country'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('country') }}</strong>
+                                </span>
+                            @endif
+                            </div>
+                            <div class="form-group row">
+                                <label for="status" class="col-md-4">Status:</label>
+                                <input type="text" name="status" class="form-control col-md-8" value="{{ auth()->user()->status }}">
+                            </div>
+                            <div class="form-group row">
+                                <label for="bio" class="col-md-4">Biography:</label>
+                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }} col-md-8" name="bio">{{ auth()->user()->bio }}</textarea>
+                           @if ($errors->has('bio'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('bio') }}</strong>
+                                </span>
+                            @endif
+                            </div>                            
                             @method('PUT')
                             <button class="btn btn-primary w-100">UPDATE</button>
                         </form>                       
@@ -142,7 +172,6 @@
 
                         <!-- Password -->
                         <button class="btn btn-link w-100" data-toggle="collapse" data-target="#password">Password</button>
-
                         <div id="password" class="collapse">
                         <form action="{{ url('profile/update/password') }}" method="POST">
                             @csrf
@@ -172,47 +201,6 @@
                                     <strong>{{ $errors->first('confirmpassword') }}</strong>
                                 </span>
                             @endif 
-                            </div>
-                            @method('PUT')
-                            <button class="btn btn-primary w-100">UPDATE</button>
-                        </form>                       
-                        </div>
-
-                        <!-- Profile -->
-                        <button class="btn btn-link w-100" data-toggle="collapse" data-target="#profile">Profile</button>
-                        <div id="profile" class="collapse">
-                        <form action="{{ url('profile/update/profile') }}" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="city" class="col-md-4">City:</label>
-                                <input type="text" name="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }} col-md-8" value="{{ auth()->user()->profile->city }}">
-                            @if ($errors->has('city'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('city') }}</strong>
-                                </span>
-                            @endif 
-                            </div>
-                            <div class="form-group row">
-                                <label for="country" class="col-md-4">Country:</label>
-                                <input type="text" name="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }} col-md-8" value="{{ auth()->user()->profile->country }}">
-                           @if ($errors->has('country'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('country') }}</strong>
-                                </span>
-                            @endif
-                            </div>
-                            <div class="form-group row">
-                                <label for="status" class="col-md-4">Status:</label>
-                                <input type="text" name="status" class="form-control col-md-8" value="{{ auth()->user()->profile->status }}">
-                            </div>
-                            <div class="form-group row">
-                                <label for="bio" class="col-md-4">Biography:</label>
-                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }} col-md-8" name="bio">{{ auth()->user()->profile->bio }}</textarea>
-                           @if ($errors->has('bio'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('bio') }}</strong>
-                                </span>
-                            @endif
                             </div>
                             @method('PUT')
                             <button class="btn btn-primary w-100">UPDATE</button>

@@ -22,8 +22,8 @@
                         <p><i class="fas fa-envelope-square"></i> {{ auth()->user()->email }}</p>
                         <p><i class="fas fa-birthday-cake"></i> {{ auth()->user()->age }}</p>
                         <p><i class="fas fa-user"></i> {{ auth()->user()->gender }}</p>
-                        <p><i class="fas fa-globe-europe"></i> {{ auth()->user()->profile->city }}</p>
-                        <p><i class="fas fa-globe-europe"></i> {{ auth()->user()->profile->country }}</p>
+                        <p><i class="fas fa-globe-europe"></i> {{ auth()->user()->city }}</p>
+                        <p><i class="fas fa-globe-europe"></i> {{ auth()->user()->country }}</p>
                     </div>
                 </div>
             </div>

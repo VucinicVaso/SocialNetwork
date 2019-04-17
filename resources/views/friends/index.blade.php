@@ -30,9 +30,9 @@
                         </div>
                         <div class="col-md-8">
                             <p><a href="{{ url($findU->firstname.".".$findU->lastname."/".$findU->id) }}">{{ $findU->firstname }} {{ $findU->lastname }}</a></p>
-                            <small>Lives in <i class="fas fa-map-marker-alt"></i> {{ $findU->profile->city }}, {{ $findU->profile->country }}</small>
+                            <small>Lives in <i class="fas fa-map-marker-alt"></i> {{ $findU->city }}, {{ $findU->country }}</small>
                             <br>
-                            <small><i class="fas fa-heart"></i> {{ $findU->profile->status }}</small>
+                            <small><i class="fas fa-heart"></i> {{ $findU->status }}</small>
                         </div>
                     </div>
                 </div>
@@ -135,9 +135,9 @@
                             </div>
                             <div class="col-md-8">
                                 <p><a href="{{ url($user->firstname.".".$user->lastname."/".$user->id) }}">{{ $user->firstname }} {{ $user->lastname }}</a></p>
-                                <small>Lives in <i class="fas fa-map-marker-alt"></i> {{ $user->profile->city }}, {{ $user->profile->country }}</small>
+                                <small>Lives in <i class="fas fa-map-marker-alt"></i> {{ $user->city }}, {{ $user->country }}</small>
                                 <br>
-                                <small><i class="fas fa-heart"></i> {{ $user->profile->status }}</small>
+                                <small><i class="fas fa-heart"></i> {{ $user->status }}</small>
                             </div>
                         </div>
                     </div>
