@@ -22,29 +22,6 @@ class ProfileController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        if($type === "profile"){
-            $this->validate($request, [
-                'city'    => 'required|min:3|max:255',
-                'country' => 'required|min:3|max:255',
-                'status'  => 'required|min:3|max:255',
-                'bio'     => 'required|min:5|max:255',
-            ]);  
-
-            $profile = auth()->user()->profile
-                ->update([
-                    'city'    => $request->input('city'),
-                    'country' => $request->input('country'),
-                    'status'  => $request->input('status'),
-                    'bio'     => $request->input('bio')
-                ]);
-
-            if($profile){
-                return back()->with('success', 'Profile updated successfully!');
-            }else{
-                return back()->with('error', 'Error. Please try again!');
-            }
-        }
-
         if($type === "user"){
             $this->validate($request, [
                 'firstname' => 'required|string|min:3|max:30',
@@ -54,6 +31,10 @@ class ProfileController extends Controller
                 'month'     => '',
                 'year'      => '',
                 'gender'    => 'required|min:4|max:10',
+                'city'    => 'required|min:3|max:255',
+                'country' => 'required|min:3|max:255',
+                'status'  => 'required|min:3|max:255',
+                'bio'     => 'required|min:5|max:255',                
             ]);    
 
             $newdate = "";
@@ -70,7 +51,11 @@ class ProfileController extends Controller
                 'lastname'  => $request->input('lastname'),
                 'age'       => $newdate,
                 'gender'    => $request->input('gender'),
-                'email'     => $request->input('email'),
+                'city'      => $request->input('city'),
+                'country'   => $request->input('country'),
+                'status'    => $request->input('status'),
+                'bio'       => $request->input('bio'),                
+                'email'     => $request->input('email'),     
             ]);         
             
             if($user){

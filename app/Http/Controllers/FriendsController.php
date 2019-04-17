@@ -22,7 +22,6 @@ class FriendsController extends Controller
             $search   = explode(" ", $request->input('search'));
             $findUser = User::where('firstname', 'LIKE', '%'.$search[0].'%')
                         ->orWhere('lastname', 'LIKE', '%'.$search[1].'%')
-                        ->with('profile')
                         ->get();     
         }
         if($type === "requests"){
@@ -30,7 +29,6 @@ class FriendsController extends Controller
         }
         if($type === "list") {
             $users = User::where('id', '!=', auth()->user()->id)
-                    ->with('profile')
                     ->orderBy('id', 'DESC')
                     ->paginate(10);
         }
