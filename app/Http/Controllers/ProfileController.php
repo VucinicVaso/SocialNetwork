@@ -9,7 +9,6 @@ use DateTime;
 
 /* models */
 use App\User;
-use App\Profile;
 
 class ProfileController extends Controller
 {

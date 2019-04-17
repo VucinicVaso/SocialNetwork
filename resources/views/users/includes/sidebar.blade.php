@@ -3,18 +3,18 @@
     <div class="card-header" style="background-color: white;">
         <p class="float-left"><i class="fas fa-globe"></i> Intro</p>
         <br>
-        @if(empty(auth()->user()->profile->bio))
+        @if(empty(auth()->user()->bio))
             <p class="text-center">Add a short bio to tell people more about yourself.</p>
             <p class="text-center"><a href="{{ url('profile/edit') }}">Add Bio</a></p>
         @else
-            <p>{{ auth()->user()->profile->bio }}</p>
+            <p>{{ auth()->user()->bio }}</p>
         @endif
         
     </div>
     <div class="card-body">
-        <p><i class="fas fa-home"></i> {{ auth()->user()->profile->city }}</p>
-        <p><i class="fas fa-map-marker-alt"></i> {{ auth()->user()->profile->country }}</p>
-        <p><i class="fas fa-heart"></i> {{ auth()->user()->profile->status }}</p>
+        <p><i class="fas fa-home"></i> {{ auth()->user()->city }}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{ auth()->user()->country }}</p>
+        <p><i class="fas fa-heart"></i> {{ auth()->user()->status }}</p>
     </div>
 </div>
 

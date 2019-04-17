@@ -3,12 +3,12 @@
     <div class="card-header" style="background-color: white;">
         <p class="float-left"><i class="fas fa-globe"></i> Intro</p>
         <br>
-        <p>{{ $user->profile->bio }}</p>        
+        <p>{{ $user->bio }}</p>        
     </div>
     <div class="card-body">
-        <p><i class="fas fa-home"></i> {{ $user->profile->city }}</p>
-        <p><i class="fas fa-map-marker-alt"></i> {{ $user->profile->country }}</p>
-        <p><i class="fas fa-heart"></i> {{ $user->profile->status }}</p>
+        <p><i class="fas fa-home"></i> {{ $user->city }}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{ $user->country }}</p>
+        <p><i class="fas fa-heart"></i> {{ $user->status }}</p>
     </div>
 </div>
 
