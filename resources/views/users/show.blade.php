@@ -4,22 +4,19 @@
 <div class="container">
 
     <!-- navbar -->
-    @include('users.includes.navbar')
+    @include('users.show-includes.navbar')
 
     <div class="row justify-content-center mt-2">
         
         <div class="col-md-4">
             <!-- sidebar -->
-            @include('users.includes.sidebar')
+            @include('users.show-includes.sidebar')
         </div>
 
         <div class="col-md-6">
 
-            <!-- create new post -->
-            @include('users.includes.create-post')
-
             <!-- posts -->
-            @include('users.includes.posts')
+            @include('users.show-includes.posts')
 
         </div>
 
