@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-Use App\Profile;
 use App\Gallery;
 use App\Photo;
 
