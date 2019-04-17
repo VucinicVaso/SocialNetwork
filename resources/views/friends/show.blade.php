@@ -5,12 +5,12 @@
 
     <!-- navbar -->
     @include('users.includes.navbar')
-
     <div class="row justify-content-center mt-2">
         
         <div class="col-md-10">
     @if($friends)
         <div class="row">
+        
         @foreach($friends as $friend)
             <div class="col-md-4 mb-2 mr-2">
                 <div class="row bg-light pt-2" style="height: 90px;">
@@ -33,13 +33,13 @@
                 </div>
             </div>        
         @endforeach
+
         </div>
     @else
     @endif
         </div>
 
     </div>
-
 </div>
 @endsection
 
