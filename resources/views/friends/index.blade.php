@@ -29,7 +29,9 @@
                             <img src="{{ url('storage/images') }}/{{ $findU->profile_image }}" class="w-100" style="heigth: 50px;">
                         </div>
                         <div class="col-md-8">
-                            <p><a href="{{ url($findU->firstname.".".$findU->lastname."/".$findU->id) }}">{{ $findU->firstname }} {{ $findU->lastname }}</a></p>
+                            <p>
+                                <a href="{{ url($findU->firstname.".".$findU->lastname."/".$findU->id) }}">{{ $findU->firstname }} {{ $findU->lastname }}</a>
+                            </p>
                             <small>Lives in <i class="fas fa-map-marker-alt"></i> {{ $findU->city }}, {{ $findU->country }}</small>
                             <br>
                             <small><i class="fas fa-heart"></i> {{ $findU->status }}</small>

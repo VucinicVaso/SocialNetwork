@@ -38,8 +38,8 @@ class HomeController extends Controller
         $posts    = Post::with('user')->with('comments')->with('likes')->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
         $friends  = Friend::friendsList($user->id);
         $isFriend = Friend::where('friend_id', auth()->user()->id)->where('user_id', $user->id)
-                    ->orWhere('friend_id', $user->id)->where('user_id', auth()->user()->id)->firstOrFail();
-
+                    ->orWhere('friend_id', $user->id)->where('user_id', auth()->user()->id)->first();
+           
         $data = [
             'user'     => $user,
             'posts'    => $posts,
