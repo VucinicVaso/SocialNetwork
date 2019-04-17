@@ -93,7 +93,7 @@
     
     {{ $friendsPosts->links() }}  
 
-    @include("facebook.includes.post-modal")
+    @include("network.includes.post-modal")
 @else
     <p class="text-center alert alert-warning">0 posts.</p>
 @endif
