@@ -34,7 +34,7 @@ class NetworkController extends Controller
             'users'        => $users,
             'friendsPosts' => $friendsPosts
         ];
-        return view('facebook.index')->with($data);
+        return view('network.index')->with($data);
     }
 
 }

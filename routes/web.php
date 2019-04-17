@@ -3,7 +3,7 @@
 Route::get('/', 'PagesController@index')->name('/');
 
 /* Facebook */
-Route::get('/home', 'FacebookController@index')->name('home');
+Route::get('/home', 'NetworkController@index')->name('home');
 
 /* Posts */
 Route::group(['middleware' => ['auth']], function () {
@@ -25,13 +25,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 /* Messages */
 
+/* Interests */
+
 /* Notifications */
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('notifications/index/{type}', 'NotificationsController@index');
 	Route::get('notifications/{type}', 'NotificationsController@show');
 });
-
-/* Interests */
 
 /* Gallery */
 Route::group(['middleware' => ['auth']], function () {
