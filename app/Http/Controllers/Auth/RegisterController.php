@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-//Use App\Profile;
-//use App\Gallery;
-//use App\Photo;
+Use App\Profile;
+use App\Gallery;
+use App\Photo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -94,15 +94,12 @@ class RegisterController extends Controller
         ]);
 
         /* create default gallery */
-        /*
         $gallery = Gallery::create([
             'title'   => 'Timeline',
             'user_id' => $user->id,
         ]);
-        */
 
         /* add default profile and cover images to gallery */
-        /*
         $profileImg = Photo::create([
             'user_id'    => $user->id,
             'gallery_id' => $gallery->id,
@@ -114,7 +111,6 @@ class RegisterController extends Controller
             'gallery_id' => $gallery->id,
             'photo'      => $user->cover_image,
         ]);
-        */
 
         return $user;
     }
