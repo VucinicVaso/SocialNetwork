@@ -21,7 +21,6 @@ class Friend extends Model
     {           
         return DB::table('friends')
             ->join('users', 'friends.user_id', '=', 'users.id')
-            ->join('profiles', 'friends.user_id', '=', 'profiles.user_id')
             ->where('friends.friend_id', auth()->user()->id)
             ->where('friends.approved', '=', 0)
             ->get();
