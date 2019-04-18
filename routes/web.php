@@ -23,9 +23,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('like/destroy', 'LikesController@destroy');
 });
 
-/* Messages */
-
 /* Interests */
+
+/* Messages */
 
 /* Notifications */
 Route::group(['middleware' => ['auth']], function () {
