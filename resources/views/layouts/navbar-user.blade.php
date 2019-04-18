@@ -3,8 +3,8 @@
         <a class="navbar-brand" href="{{ url('home') }}">
             <i class="fab fa-facebook-f" style="color: white;"></i>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <i class="fas fa-toggle-on"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,7 +22,6 @@
                 </li>
             </ul>
 
-            <!-- Right Side of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 <li class="nav-item">
@@ -76,6 +75,7 @@
                 </li>
 
             </ul>
+
         </div>
     </div>
 </nav>
