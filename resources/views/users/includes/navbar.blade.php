@@ -3,9 +3,9 @@
         <div class="card">
             <div class="card-header" style="padding: 0px;">
                 <img src="{{ url('storage/images') }}/{{ auth()->user()->cover_image }}" class="w-100 img-fluid profile-cover-image">
-                <div class="row justify-content-left">
-                    <img src="{{ url('storage/images') }}/{{ auth()->user()->profile_image }}" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 img-fluid profile-image">
-                    <p class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pl-0 profile-name"><b>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</b></p>
+                <div class="row justify-content-start">
+                    <img src="{{ url('storage/images') }}/{{ auth()->user()->profile_image }}" class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 img-fluid rounded-circle profile-image">
+                    <p class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 profile-name"><b>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</b></p>
                 </div>
                 <nav class="navbar navbar-expand-sm navbar-light justify-content-center" style="margin-top: -18px;">
                     <a class="navbar-brand" href="{{ url('profile') }}">Timeline</a>
