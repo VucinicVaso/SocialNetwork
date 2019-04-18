@@ -8,16 +8,16 @@
 
     <div class="row justify-content-center mt-2">
         
-        <div class="col-md-10">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-                <div class="card-header">
-                    <h2><i class="fas fa-user-edit"></i> Settings</h2>
+                <div class="card-header d-flex flex-column">
+                    <h2 class="p-2"><i class="fas fa-user-edit"></i> Settings</h2>
                 </div>
-                <div class="card-body row justify-content-left">
-                    <div class="col-md-4 overview">
+                <div class="card-body row justify-content-start">
+                    <div class="col-xl-4 col-lg-4 col-md-4 l-sm-12 col-12 overview">
                         <h4 class="text-center">User</h4>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-xl-8 col-lg-8 col-md-8 l-sm-12 col-12">
                     
                     @if(session('success'))
                         <p class="text-center alert alert-info mt-2">{{ session('success') }}</p>
