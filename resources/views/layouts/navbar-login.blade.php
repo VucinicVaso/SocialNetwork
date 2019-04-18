@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-md network-navbar text-white" style="height: 120px;">
+<nav class="navbar navbar-expand-md network-navbar text-white">
     <div class="container-fluid">
         <a class="network-logo text-white" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <i class="fas fa-toggle-on"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -14,7 +14,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item pt-4">
+                <li class="nav-item">
                     
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
