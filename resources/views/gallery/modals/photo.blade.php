@@ -83,24 +83,24 @@
 
               if(photo != ""){
                 let photoData = `
-                    <div class="row">
-                        <div class="col-md-8">
+                    <div class="row text-white">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                         <!-- photo -->
-                        <img src="{{ url('storage/images') }}/${photo.photo}" class="w-100" style="height:600px;">
+                        <img src="{{ url('storage/images') }}/${photo.photo}" class="img-fluid w-100" style="height:500px;">
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                           <!-- user and photo data -->
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <div class="row justify-content-left text-white">
-                              <img src="{{ url('storage/images') }}//${photo.user.profile_image}" class="col-md-6 w-100" style="height:75px;">
-                              <a href="#" class="col-md-6" style="padding-left: 0px;">${photo.user.firstname} ${photo.user.lastname}</a>
-                              <small>${photo.created_at}</small>
+                          <div class="d-flex flex-row justify-content-start text-white">
+                              <img src="{{ url('storage/images') }}//${photo.user.profile_image}" class="p-2 img-fluid" style="height:75px;">
+                              <a href="#" class="p-2" style="padding-left: 0px;">${photo.user.firstname} ${photo.user.lastname}</a>
                           </div>
+                          <small>${photo.created_at}</small>
                           <hr>
                           <div class="row justify-content-between">
-                            <button class="col-md-4 btn btn-primary w-100" onclick="setProfile(${photo.id})">Profile Image</button>
-                            <button class="col-md-4 btn btn-primary w-100" onclick="setCover(${photo.id})">Cover Image</button>
-                            <button class="col-md-2 btn btn-danger w-100" onclick="deleteImage(${photo.id})"><i class="fas fa-trash-alt"></i></button>
+                            <button class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 btn btn-primary w-100 mb-1" onclick="setProfile(${photo.id})">Profile Image</button>
+                            <button class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  btn btn-primary w-100 mb-1" onclick="setCover(${photo.id})">Cover Image</button>
+                            <button class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 btn btn-danger w-100 mb-1" onclick="deleteImage(${photo.id})"><i class="fas fa-trash-alt"></i></button>
                           </div>
                         </div>
                     </div>`;
