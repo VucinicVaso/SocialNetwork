@@ -81,7 +81,7 @@ $(document).ready(function(){
                                 <form action="{{ route('comment/store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">
-                                    <img src="${ADDRESS}/storage/images/${post.user.profile_image}" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 w-100 img-fluid rounded" style="height: 40px;">
+                                    <img src="${ADDRESS}/storage/images/{{ auth()->user()->profile_image }}" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 w-100 img-fluid rounded" style="height: 40px;">
                                     <input type="text" name="comment" class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-6 form-control mt-1" placeholder="Write a comment...">
                                     <input type="hidden" name="post_id" value="${post.id}">
                                 </div>                                  
