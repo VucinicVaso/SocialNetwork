@@ -33,7 +33,7 @@
                         </p>
                     <!-- request pending -->
                     @elseif(App\Friend::where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 0)->first())
-                        <p class="p-2">
+                        <p class="p-2" style="margin-top: -15px; margin-bottom: -10px;">
                             <a href="{{ url('friends/index/list') }}" class="btn btn-info w-100"><i class="fas fa-user-plus"></i>Request pending</a>
                         </p>
                      <!-- add friend --> 
