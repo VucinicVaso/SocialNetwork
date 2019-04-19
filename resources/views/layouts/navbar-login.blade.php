@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md network-navbar text-white">
+<nav class="navbar navbar-expand-md network-navbar text-white" style="">
     <div class="container-fluid">
         <a class="network-logo text-white" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -14,7 +14,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item">
+                <li class="nav-item" style="margin-top: -10px; margin-bottom: -25px !important;">
                     
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -51,6 +51,7 @@
                                     {{ __('Login') }}
                                 </button>
                             </div>
+
                         </div>
                     </form>
 
