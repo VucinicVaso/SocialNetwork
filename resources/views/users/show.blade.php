@@ -13,7 +13,7 @@
             @include('users.show-includes.sidebar')
         </div>
 
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-12">
 
             <!-- posts -->
             @include('users.show-includes.posts')
