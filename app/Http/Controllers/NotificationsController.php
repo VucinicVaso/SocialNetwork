@@ -37,9 +37,8 @@ class NotificationsController extends Controller
                         ->where('type', 'like')
                         ->where('status', 0)
                         ->get();
-            Notification::where('user_id', auth()->user()->id)->where('type', 'like')->update([
-                'status' => 1
-            ]);
+            Notification::where('user_id', auth()->user()->id)->where('type', 'like')
+                        ->update([ 'status' => 1 ]);
         }
         if($type === "comments"){
             $comments = Notification::where('user_id', auth()->user()->id)->where('type', 'comment')->where('status', 0)
@@ -47,10 +46,10 @@ class NotificationsController extends Controller
                         ->with('post')
                         ->with('comment')
                         ->get();
-            Notification::where('user_id', auth()->user()->id)->where('type', 'comment')->update([
-                'status' => 1
-            ]);
+            Notification::where('user_id', auth()->user()->id)->where('type', 'comment')
+                        ->update([ 'status' => 1 ]);
         }
+        dd($comments);
         $data = [
             'likes'    => $likes,
             'comments' => $comments
