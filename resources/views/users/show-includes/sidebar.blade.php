@@ -21,7 +21,7 @@
     <div class="card-body row">
         @if($friends)
             @foreach($friends as $friend)
-                <a href="{{ url($friend->firstname.".".$friend->lastname."/".$friend->friend_id) }}" class="col-xl-12 col-lg-12 col-md-4 col-sm-12 col-12">
+                <a href="{{ url($friend->firstname.".".$friend->lastname."/".$friend->friend_id) }}" class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                     <img src="{{ url('storage/images') }}/{{ $friend->profile_image }}" class="w-100" style="height: 50px;">
                 </a>
             @endforeach
