@@ -31,6 +31,7 @@
 	        		<h1>Notifications: Comments ({{ count($comments) }})</h1>
 	        		<hr>	        	
 	        		@foreach($comments as $comment)
+
 	        		<div class="row mb-4">
 	        			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card">
 	        				<div class="card-body d-flex flex-column">

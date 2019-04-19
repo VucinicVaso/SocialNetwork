@@ -21,4 +21,9 @@ class Comment extends Model
 		return $this->belongsTo('App\User');
 	}
 
+	public function notifications()
+	{
+		return $this->HasMany('App\Notification', 'target', 'post_id');
+	}
+
 }

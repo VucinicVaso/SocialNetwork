@@ -25,8 +25,7 @@ class Notification extends Model
     public function comment()
     {
        return $this->belongsTo('App\Comment', 'notification_from', 'user_id');
-        //return $this->hasOne('App\Comment', 'user_id', 'notification_from');
-    }
+    }    
 
     public static function get_notifications($user)
     {

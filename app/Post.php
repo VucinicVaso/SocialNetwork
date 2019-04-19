@@ -29,7 +29,7 @@ class Post extends Model
 
     public function notifications()
     {
-        return $this->hasMany('App\Notification', 'id', 'target');
+        return $this->hasMany('App\Notification', 'target', 'id');
     }
 
     public static function postComments($id)
