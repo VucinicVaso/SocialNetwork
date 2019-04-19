@@ -80,17 +80,17 @@ window.onload = function(){
 					if(notification.type === "like"){
 						displayNotifications +=	`
 							<div class="dropdown-item">
-								<div class="row">
-									<a class="col-md-3" href="${ADDRESS}/${notification.firstname}.${notification.lastname}/${notification.notification_from}">
-										<img class="w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
+								<div class="d-flex flex-row justify-content-between">
+									<a class="p-2" href="${ADDRESS}/${notification.firstname}.${notification.lastname}/${notification.notification_from}">
+										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
 										<p>${notification.firstname} ${notification.lastname}</p>
 									</a>
-									<div class="col-md-6">
+									<div class="p-2">
 										<a href="${ADDRESS}/notifications/likes">liked your post</a>
 										<p>${notification.created_at}</p>
 									</div>
-									<div class="col-md-3">
-										<img class="w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
+									<div class="p-2">
+										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
 									</div>								
 								</div>
 							</div>
@@ -98,21 +98,21 @@ window.onload = function(){
 					}else if(notification.type === "comment"){
 						displayNotifications +=	`
 							<div class="dropdown-item">
-								<div class="row">
-									<a class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12" href=${ADDRESS}//${notification.firstname}.${notification.lastname}/${notification.notification_from}">
-										<img class="w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
+								<div class="d-flex flex-row justify-content-between">
+									<a class="p-2" href=${ADDRESS}//${notification.firstname}.${notification.lastname}/${notification.notification_from}">
+										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
 										<p>${notification.firstname} ${notification.lastname}</p>
 									</a>
-									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+									<div class="p-2">
 										<a href="${ADDRESS}//notifications/comments">commented on your post</a>
 										<p>${notification.created_at}</p>
 									</div>
-									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-										<img class="w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
+									<div class="p-2">
+										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
 									</div>
 								</div>
 							</div>
-						`;
+						`;						
 					}
 					showNotifications.innerHTML = displayNotifications;
 				})

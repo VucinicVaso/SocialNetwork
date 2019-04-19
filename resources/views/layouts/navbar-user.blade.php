@@ -50,7 +50,7 @@
                         <i class="fas fa-bell" id="notifications"></i>
                         <span class="badge" id="number-of-notifications"></span>
                     </a>
-                    <div class="dropdown-menu" id="show-notifications" style="width: 400px; margin-left: -150px;">
+                    <div class="dropdown-menu" id="show-notifications" style="width: 425px; margin-left: -350px;">
                         <!-- show notifications -->
                     </div>
                 </li>
