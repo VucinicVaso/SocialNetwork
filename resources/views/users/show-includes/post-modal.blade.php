@@ -1,4 +1,5 @@
 <script type="text/javascript">
+
 $(document).ready(function(){
 
     let modalBody    = document.querySelector(".modal-body");

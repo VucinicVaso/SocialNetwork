@@ -5,7 +5,7 @@
 
     <div class="row justify-content-center mt-2">
         
-        <div class="col-md-6">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
             <div class="row mb-2">
                 <!-- create new post -->
@@ -19,7 +19,7 @@
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <!-- users -->
                 @include('network.includes.users')   
         </div>

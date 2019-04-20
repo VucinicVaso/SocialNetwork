@@ -15,7 +15,7 @@
                     <img src="{{ url('storage/images') }}/{{ $post->user->profile_image }}" class="img-fluid" style="width:50%; height: 35px;">
                     {{ $post->user->firstname }} {{ $post->user->lastname }}
                     <small class="text-center">{{ $post->created_at }}</small>
-                </div>
+                </div>            
             </div><!-- /card-header -->
 
             <div class="card-body">
