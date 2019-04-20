@@ -12,16 +12,13 @@
         <div class="row">
         
         @foreach($friends as $friend)
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2 mr-2">
-                <div class="row bg-light pt-2" style="height: 90px;">
-                
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <a href="{{ url($friend->firstname.".".$friend->lastname."/".$friend->friend_id) }}">
-                            <img src="{{ url('storage/images') }}/{{ $friend->profile_image }}" class="w-100 mt-1" style="height: 50px;">
-                            <p class="text-center">{{ $friend->firstname }} {{ $friend->lastname }}</p>
-                        </a>  
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-2">
+                <div class="d-flex flex-row justify-content-between bg-light">
+                    <a href="{{ url($friend->firstname.".".$friend->lastname."/".$friend->friend_id) }}" class="p-2">
+                        <img src="{{ url('storage/images') }}/{{ $friend->profile_image }}" class="img-fluid w-100" style="height: 50px;">
+                        <p class="text-center">{{ $friend->firstname }} {{ $friend->lastname }}</p>
+                    </a>
+                    <div class="p-2">
                         <form action="{{ route('friends/destroy') }}" method="POST">
                             @csrf
                             <input type="hidden" name="user_id" value="{{ $friend->friend_id }}" />
@@ -29,7 +26,6 @@
                             <button type="submit" class="btn btn-info w-100 mt-3"><i class="fas fa-user-minus"></i> Unfriend</button>
                         </form>                         
                     </div>
-                
                 </div>
             </div>        
         @endforeach
