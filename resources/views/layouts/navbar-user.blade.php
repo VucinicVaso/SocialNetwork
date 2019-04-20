@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md network-navbar text-white">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('home') }}">
-            <i class="fab fa-facebook-f" style="color: white;"></i>
+            <i class="fab fa-internet-explorer" style="color: white;"></i>
         </a>
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <i class="fas fa-toggle-on"></i>
