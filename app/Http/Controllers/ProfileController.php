@@ -77,7 +77,7 @@ class ProfileController extends Controller
                         return $fail(__('Password is already taken.'));
                     }
                 }],
-                'confirmpassword' => 'required|min:7|max:14W|same:newpassword',
+                'confirmpassword' => 'required|min:7|max:14|same:newpassword',
             ]);  
             
             $password = $user->update([
