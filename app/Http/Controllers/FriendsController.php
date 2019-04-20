@@ -43,11 +43,9 @@ class FriendsController extends Controller
     /* list of users friends */
     public function show()
     {
-        $user    = User::find(auth()->user()->id);
         $friends = Friend::friendsList(auth()->user()->id);
 
         $data = [
-            'user'    => $user,
             'friends' => $friends
         ];
         return view('friends.show')->with($data);
