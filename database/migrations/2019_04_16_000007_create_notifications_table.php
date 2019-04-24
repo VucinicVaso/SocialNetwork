@@ -15,12 +15,17 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('notification_from');
-            $table->integer('user_id')->references('id')->on('users');
-            $table->integer('target');
+            $table->unsignedBigInteger('notification_from');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('target');
             $table->enum('type', array('comment', 'like'));
             $table->integer('status');
             $table->timestamps();
+
+            $table->foreign('notification_from')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('target')->references('id')->on('posts')->onDelete('cascade');
+            
         });
     }
 

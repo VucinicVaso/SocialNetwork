@@ -51,9 +51,9 @@
                         <span class="badge" id="number-of-notifications"></span>
                     </a>
                     <div class="dropdown-menu" id="show-notifications" style="width: 425px; margin-left: -350px;">
-                        <!-- show notifications -->
+                       <!-- show notifications --> 
                     </div>
-                </li>
+                </li>               
 
                 <script src="{{ asset('js/script.js') }}"></script>
 
