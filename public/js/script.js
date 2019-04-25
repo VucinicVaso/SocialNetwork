@@ -99,12 +99,12 @@ window.onload = function(){
 						displayNotifications +=	`
 							<div class="dropdown-item">
 								<div class="d-flex flex-row justify-content-between">
-									<a class="p-2" href=${ADDRESS}//${notification.firstname}.${notification.lastname}/${notification.notification_from}">
+									<a class="p-2" href="${ADDRESS}//${notification.firstname}.${notification.lastname}/${notification.notification_from}">
 										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
 										<p>${notification.firstname} ${notification.lastname}</p>
 									</a>
 									<div class="p-2">
-										<a href="${ADDRESS}//notifications/comments">commented on your post</a>
+										<a href="${ADDRESS}//notifications/comments/${notification.id}">commented on your post</a>
 										<p>${notification.created_at}</p>
 									</div>
 									<div class="p-2">
