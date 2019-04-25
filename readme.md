@@ -22,14 +22,14 @@
 
 <small>for nginx on ubuntu</small>
 <ul>
-	<li>go to the  /var/www/html</li>
+	<li>go to the /var/www/html</li>
 	<li>sudo git clone --git path of the project-- (clone project in var/www/html)</li>
 	<li>go to the folder application using cd command on your cmd or terminal (location var/www/html)</li>
 	<li>sudo composer install (run composer install on your cmd or terminal inside of the folder)</li>
-	<li>sudo cp .env.example .env (create new .env file from the .env.example)</li>
+	<li>sudo cp .env.example .env (create new .env file from the .env.example, add DB_DATABASE, DB_USERNAME and DB_PASSWORD in .env)</li>
+	<li>create database for this project (for example name the database socialnetwork)</li>
 	<li>sudo php artisan key:generate (to generate key)</li>
 	<li>sudo php artisan storage:link (To create the symbolic link)</li>
-	<li>create database for this project (for example name the database socialnetwork)</li>
 	<li>sudo php artisan migrate (migrate tables in database) </li>
 </ul>
 
