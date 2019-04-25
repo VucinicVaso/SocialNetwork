@@ -10,13 +10,13 @@
 <small>for xampp on windows</small>
 <ul>
 	<li>clone project in xampp/htdocs</li>
-	<li>go to the folder application using cd command on your cmd or terminal</li>
+	<li>go to the folder application using cd command on your cmd or terminal (location xampp/htdocs/SocialNetwork)</li>
 	<li>run composer install on your cmd or terminal inside of the folder</li>
-	<li>copy .env.example file to .env on the root folder.</li>
+	<li>copy .env.example file to .env on the root folder (add DB_DATABASE, DB_USERNAME and DB_PASSWORD in .env).</li>
 	<li>php artisan key:generate (to generate key)</li>
-	<li>php artisan storage:link (To create the symbolic link)</li>
 	<li>create database for this project (for example name the database socialnetwork)</li>
 	<li>php artisan migrate (migrate tables in database) </li>
+	<li>php artisan storage:link (To create the symbolic link)</li>
 	<li>php artisan serve (run project)</li>
 </ul>
 
@@ -24,7 +24,7 @@
 <ul>
 	<li>go to the /var/www/html</li>
 	<li>sudo git clone --git path of the project-- (clone project in var/www/html)</li>
-	<li>go to the folder application using cd command on your cmd or terminal (location var/www/html)</li>
+	<li>go to the folder application using cd command on your cmd or terminal (location var/www/html/SocialNetwork)</li>
 	<li>sudo composer install (run composer install on your cmd or terminal inside of the folder)</li>
 	<li>sudo cp .env.example .env (create new .env file from the .env.example, add DB_DATABASE, DB_USERNAME and DB_PASSWORD in .env)</li>
 	<li>create database for this project (for example name the database socialnetwork)</li>
