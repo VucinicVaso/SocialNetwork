@@ -5,13 +5,16 @@
 
 <hr>
 
-|How to use| |
-| `clone project into your enviroment`||
-| `create .env file from .env.example` ||
-| `php artisan key:generate` | `to generate key` |
-| `create database for this project` | `name of db socialnetwork` |
-| `php artisan migrate` | `migrate tables into database` |
-| `php artisan storage:link` | `To create the symbolic link` |
+<p>How to use</p>
+<ul>
+	<li>clone project into your enviroment</li>
+	<li>create .env file from .env.example</li>
+	<li>php artisan key:generate (to generate key)</li>
+	<li>create database for this project (for example name the database socialnetwork)</li>
+	<li>php artisan migrate (migrate tables in database) </li>
+	<li>php artisan storage:link (To create the symbolic link)</li>
+	<li>php artisan serve (run project)</li>
+</ul>
 
 
 
