@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 /* models */
 use App\Notification;
 use App\Post;
+use App\Comment;
 
 class NotificationsController extends Controller
 {
@@ -15,43 +16,26 @@ class NotificationsController extends Controller
     {
         $message = array();
         if($type === "count"){
-            $notifications = Notification::where('user_id', auth()->user()->id)->where('status', 0)->count();
-            if($notifications){
-                $message['notifications'] = $notifications;
-            }
+            $message['notifications'] = Notification::where('user_id', auth()->user()->id)->where('status', 0)->count();
         }
         if($type === "get"){
-            $notifications            = Notification::get_notifications(auth()->user()->id);
-            $message['notifications'] = $notifications;
+            $message = [
+                'likes'    => Notification::get_likes(auth()->user()->id),
+                'comments' => Notification::get_comments(auth()->user()->id),         
+            ];
+            Notification::where('user_id', auth()->user()->id)->where('type', 'like')->update([ 'status' => 1 ]);
         }
         return response()->json($message); 
     }
 
-    public function show($type)
+    public function show($target)
     {
-        $likes    = [];
         $comments = [];
-        if($type === "likes"){
-            $likes = Notification::with('post')
-                        ->with('user')
-                        ->where('user_id', auth()->user()->id)
-                        ->where('type', 'like')
-                        ->where('status', 0)
-                        ->get();
-            Notification::where('user_id', auth()->user()->id)->where('type', 'like')->update([ 'status' => 1 ]);
-        }
-        if($type === "comments"){
-            
-            $comments = Notification::where('user_id', auth()->user()->id)->where('type', 'comment')->where('status', 0)
-                        ->with('user')
-                        ->with('post')
-                        ->with('comment')
-                        ->get();
-            Notification::where('user_id', auth()->user()->id)->where('type', 'comment')->update([ 'status' => 1 ]);
-        }
+            $notification = Notification::find($target);
+            $comment  = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
+            Notification::where('id', $notification->id)->where('user_id', auth()->user()->id)->update([ 'status' => 1 ]);
         $data = [
-            'likes'    => $likes,
-            'comments' => $comments
+            'comment' => $comment
         ];
         return view("notifications.index")->with($data);
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Comment extends Model
 {
@@ -23,7 +24,19 @@ class Comment extends Model
 
 	public function notifications()
 	{
-		return $this->HasMany('App\Notification', 'target', 'post_id');
+		return $this->HasOne('App\Notification', 'target', 'post_id');
 	}
+
+    public static function get_comment($from, $target, $created_at)
+    {
+        return DB::table('comments')
+            ->join('users', 'comments.user_id', '=', 'users.id')
+            ->join('posts', 'comments.post_id', '=', 'posts.id')
+            ->where('comments.post_id', $target)
+            ->where('comments.user_id', $from)
+  			->where('comments.created_at', $created_at)
+            ->select('posts.images', 'users.id', 'users.firstname', 'users.lastname', 'users.profile_image', 'comments.user_id', 'comments.comment', 'comments.created_at')
+            ->first();        
+    }	
 
 }

@@ -60,9 +60,9 @@ window.onload = function(){
 	setInterval(notifications, 5000);
 
 	showNotifications = () => {
-		const CSRF_TOKEN         = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-		let showNotifications    = document.querySelector("#show-notifications");
-		let displayNotifications = "";
+		const CSRF_TOKEN            = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+		let showNotificationsDIV    = document.querySelector("#show-notifications");
+		let displayNotificationsDIV = "";
 
 		fetch(ADDRESS + "/notifications/index/get", {
 			method: 'GET',
@@ -71,52 +71,52 @@ window.onload = function(){
 		    },
 		}).then(response => response.json())
 		.then(data => {
-			const { notifications } = data;			
+			const { likes, comments } = data;			
+			
+			likes.map(like => {
+				images = JSON.parse(like.images);	
+				displayNotificationsDIV +=	`
+					<div class="dropdown-item">
+						<div class="d-flex flex-row justify-content-between">
+							<a class="p-2" href="${ADDRESS}/${like.firstname}.${like.lastname}/${like.notification_from}">
+								<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${like.profile_image}" />
+								<p>${like.firstname} ${like.lastname}</p>
+							</a>
+							<div class="p-2">
+								<p>liked your post</p>
+								<small>${like.created_at}</small>
+							</div>
+							<div class="p-2">
+								<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
+							</div>								
+						</div>
+					</div>
+				`;				
+			})
+			displayNotificationsDIV += "<hr>";
 
-			if(notifications.length > 0) {
-				
-				notifications.map(notification => {
-					images = JSON.parse(notification.images);
-					if(notification.type === "like"){
-						displayNotifications +=	`
-							<div class="dropdown-item">
-								<div class="d-flex flex-row justify-content-between">
-									<a class="p-2" href="${ADDRESS}/${notification.firstname}.${notification.lastname}/${notification.notification_from}">
-										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
-										<p>${notification.firstname} ${notification.lastname}</p>
-									</a>
-									<div class="p-2">
-										<a href="${ADDRESS}/notifications/likes">liked your post</a>
-										<p>${notification.created_at}</p>
-									</div>
-									<div class="p-2">
-										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
-									</div>								
-								</div>
+			comments.map(comment => {
+				images = JSON.parse(comment.images);
+				displayNotificationsDIV +=	`
+					<div class="dropdown-item">
+						<div class="d-flex flex-row justify-content-between">
+							<a class="p-2" href="${ADDRESS}//${comment.firstname}.${comment.lastname}/${comment.notification_from}">
+								<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${comment.profile_image}" />
+								<p>${comment.firstname} ${comment.lastname}</p>
+							</a>
+							<div class="p-2">
+								<a href="${ADDRESS}//notifications/${comment.notifyID}">commented on your post</a>
+								<p>${comment.created_at}</p>
 							</div>
-						`;
-					}else if(notification.type === "comment"){
-						displayNotifications +=	`
-							<div class="dropdown-item">
-								<div class="d-flex flex-row justify-content-between">
-									<a class="p-2" href="${ADDRESS}//${notification.firstname}.${notification.lastname}/${notification.notification_from}">
-										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${notification.profile_image}" />
-										<p>${notification.firstname} ${notification.lastname}</p>
-									</a>
-									<div class="p-2">
-										<a href="${ADDRESS}//notifications/comments/${notification.id}">commented on your post</a>
-										<p>${notification.created_at}</p>
-									</div>
-									<div class="p-2">
-										<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
-									</div>
-								</div>
+							<div class="p-2">
+								<img class="img-fluid w-100" style="height: 50px;" src="${ADDRESS}/storage/images/${images[0]}" />
 							</div>
-						`;						
-					}
-					showNotifications.innerHTML = displayNotifications;
-				})
-			}
+						</div>
+					</div>
+				`;
+			})
+			showNotificationsDIV.innerHTML = displayNotificationsDIV;	
+
 			
 		});			
 	}
