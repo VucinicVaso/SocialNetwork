@@ -31,6 +31,8 @@
 	<li>sudo php artisan key:generate (to generate key)</li>
 	<li>sudo php artisan storage:link (To create the symbolic link)</li>
 	<li>sudo php artisan migrate (migrate tables in database) </li>
+	<li>sudo chgrp -R www-data storage bootstrap/cache</li>
+	<li>sudo chmod -R ug+rwx storage bootstrap/cache</li>
 </ul>
 
 

@@ -32,7 +32,7 @@ class NotificationsController extends Controller
     {
         $comments = [];
             $notification = Notification::find($target);
-            $comment  = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
+            $comment      = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
             Notification::where('id', $notification->id)->where('user_id', auth()->user()->id)->update([ 'status' => 1 ]);
         $data = [
             'comment' => $comment
