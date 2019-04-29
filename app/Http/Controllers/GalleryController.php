@@ -46,9 +46,4 @@ class GalleryController extends Controller
         return view('gallery.show')->with($data);
     }
 
-    public function destroy($id)
-    {
-        //
-    }
-
 }
