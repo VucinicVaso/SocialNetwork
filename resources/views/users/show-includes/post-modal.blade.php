@@ -116,8 +116,6 @@ $(document).ready(function(){
                     </div>`;
 
                 modalBody.innerHTML = postData;
-            }else {
-                alert(error);
             }
         });
 

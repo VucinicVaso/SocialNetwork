@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -58,23 +57,19 @@ class PostsController extends Controller
         }else {
             $message['error'] = "Error. Please try again!";
         }
-
         return response()->json($message);
     }
 
     /* delete post */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
-        if($post){
-            foreach(json_decode($post->images) as $image) { // delete post images
-                Storage::delete("images/".$image);
-            }
-            $delete = $post->delete();                      // delete post
+        abort_if($post->user_id !== auth()->id(), 403);
+        if($post->delete()){
             return back()->with(['post-success' => 'Post delete successfully!']);
         }else{
             return back()->with(['post-error' => 'Error. Please try again!']);
         }   
     }
+
 
 }

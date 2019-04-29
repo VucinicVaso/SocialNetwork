@@ -9,7 +9,7 @@ Route::get('/home', 'NetworkController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('post/show/{id}', 'PostsController@show')->name('post/show');
 	Route::post('post/store', 'PostsController@store')->name('post/store');
-	Route::delete('post/destroy/{id}', 'PostsController@destroy');
+	Route::delete('post/destroy/{post}', 'PostsController@destroy');
 });
 
 /* Comments */
