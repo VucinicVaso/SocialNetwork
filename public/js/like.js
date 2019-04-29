@@ -32,7 +32,7 @@ function unlikePost(id){
 	fetch(ADDRESS + '/like/destroy', {
 	    headers: {
 			"X-CSRF-TOKEN": CSRF_TOKEN	    	
-	    }, 
+	    },
 		method: 'POST',
 		body: formData
 	}).then(response => response.json())

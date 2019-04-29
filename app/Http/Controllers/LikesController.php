@@ -56,6 +56,6 @@ class LikesController extends Controller
             $message['error'] = FALSE;
             return response()->json($message);
         } 
-    }
+    }   
 
 }
