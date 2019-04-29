@@ -28,11 +28,11 @@ class NotificationsController extends Controller
         return response()->json($message); 
     }
 
-    public function show($target)
+    public function show(Notification $notification)
     {
-        $notification = Notification::find($target);
-        $comment      = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
-        Notification::where('id', $notification->id)->where('user_id', auth()->user()->id)->update([ 'status' => 1 ]);
+        abort_if($notification->user_id !== auth()->id(), 403);
+        $comment = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
+        $notification->update([ 'status' => 1 ]);
         $data = [
             'comment' => $comment
         ];
