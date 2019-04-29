@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('photo/{id}', 'PhotosController@show');
 	Route::post('photo/update/{type}', 'PhotosController@update');
 	Route::post('photo/store', 'PhotosController@store')->name('photo/store');
-	Route::delete('photo/destroy/{id}', 'PhotosController@destroy');
+	Route::delete('photo/destroy/{photo}', 'PhotosController@destroy');
 });
 
 /* Friends */

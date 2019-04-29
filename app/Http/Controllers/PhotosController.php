@@ -83,10 +83,10 @@ class PhotosController extends Controller
         } 
     }
 
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
-        $delete = Photo::where('id', '=', $id)->where('user_id', '=', auth()->user()->id)->delete();
-        if($delete){
+        abort_if($photo->user_id !== auth()->id(), 403);
+        if($photo->delete()){
             $success = true;
             return response()->json($success);
         }
