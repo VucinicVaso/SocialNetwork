@@ -14,7 +14,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item" style="margin-top: -10px; margin-bottom: -25px !important;">
+                <li class="nav-item" style="margin-top: -10px; margin-bottom: -5px !important;">
                     
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -38,12 +38,7 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif    
+                                @endif  
                             </div>                                
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mt-4 pt-3">
