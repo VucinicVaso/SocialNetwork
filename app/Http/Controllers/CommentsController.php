@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 /* models */
 use App\Comment;
 use App\Post;
-use App\Notification;
+
+/* event */
+use App\Events\NotificationCreated;
 
 class CommentsController extends Controller
 {
@@ -19,20 +21,15 @@ class CommentsController extends Controller
             'post_id' => 'required|integer' 
         ]);        
 
-        $comment = Comment::create([                           /* comment */
+        $comment = Comment::create([                        /* comment */
             'comment' => $request->input('comment'),
             'post_id' => $request->input('post_id'),
             'user_id' => auth()->user()->id
         ]);
 
-        $post = Post::find($comment->post_id);                 /* post */
-        Notification::create([                                 /* notification */
-            'notification_from' => auth()->user()->id,
-            'user_id'           => $post->user_id,
-            'target'            => $post->id,
-            'type'              => 'comment',
-            'status'            => 0
-        ]);
+        $post = Post::find($comment->post_id);              /* post */
+
+        event(new NotificationCreated($post, 'comment'));   /* notification event */
 
         if($comment){
             return back()->with(['success' => 'Comment created successfully!']);

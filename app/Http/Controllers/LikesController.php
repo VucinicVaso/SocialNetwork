@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 /* models */
 use App\Like;
 use App\Post;
-use App\Notification;
+
+/* event */
+use App\Events\NotificationCreated;
 
 class LikesController extends Controller
 {
@@ -21,19 +23,14 @@ class LikesController extends Controller
             'post_id' => 'required' 
         ]);        
 
-        $like = Like::create([                                 /* like */
+        $like = Like::create([                           /* like */
             'post_id' => $request->input('post_id'),
             'user_id' => auth()->user()->id
         ]);
 
-        $post = Post::find($like->post_id);                    /* post */
-        Notification::create([                                 /* notification */
-            'notification_from' => auth()->user()->id,
-            'user_id'           => $post->user_id,
-            'target'            => $post->id,
-            'type'              => 'like',
-            'status'            => 0
-        ]);
+        $post = Post::find($like->post_id);              /* post */
+
+        event(new NotificationCreated($post, 'like'));   /* notification event */
 
         if($like){
             $message['success'] = "Like created successfully!";
