@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md network-navbar text-white" style="">
+<nav class="navbar navbar-expand-md network-navbar text-white">
     <div class="container-fluid">
         <a class="network-logo text-white" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -8,8 +8,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto"></ul>
+
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

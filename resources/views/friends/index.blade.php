@@ -13,7 +13,6 @@
             @else
             @endif  
 
-
             <!-- search for user -->
             @include('friends.includes.search-users')
 

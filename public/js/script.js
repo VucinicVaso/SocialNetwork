@@ -115,9 +115,7 @@ window.onload = function(){
 					</div>
 				`;
 			})
-			showNotificationsDIV.innerHTML = displayNotificationsDIV;	
-
-			
+			showNotificationsDIV.innerHTML = displayNotificationsDIV;
 		});			
 	}
 

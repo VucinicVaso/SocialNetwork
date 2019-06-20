@@ -11,8 +11,7 @@
         </div> 
 
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-        	<h2>Create a New Account</h2>
-        	<p>It's free and always will be.</p>
+        	<h2 class="pb-3">Create a New Account</h2>
         	<form method="POST" action="{{ route('register') }}">
         		@csrf
 				<div class="form-group row">
@@ -132,12 +131,6 @@
 	                    </span>
 	                @endif
 	            </div>                
-
-	            <div class="form-group row justify-content-left">    
-	                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
-						<p>By clicking Sign Up, you agree o our Terms, Data Polivy and Cookies Policy. You may receive SMS Notificatios from us and can opt out any time.</p>                               
-	                </div>
-	            </div>  
 
                 <div class="form-group row justify-content-left">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">

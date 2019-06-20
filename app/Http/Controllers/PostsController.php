@@ -20,6 +20,7 @@ class PostsController extends Controller
         ]);
 
         /* Handle File Upload (multiple images) */
+        $data = [];
         if($request->hasFile('filename')) {
             foreach($request->file('filename') as $image) {
                 $filenameWithExt = $image->getClientOriginalName();
