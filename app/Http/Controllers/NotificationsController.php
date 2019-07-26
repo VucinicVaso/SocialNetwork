@@ -37,6 +37,7 @@ class NotificationsController extends Controller
             'comment' => $comment
         ];
         return view("notifications.index")->with($data);
+        
     }
 
 }

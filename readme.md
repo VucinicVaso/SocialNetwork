@@ -3,6 +3,18 @@
 <h1> About SocialNetwork</h1>
 <p>SocialNetwork was build with php framework Laravel (5.8), Javascript, HTML and CSS(Bootstrap 4).</p>
 
+<ul>
+	<li>register / login user</li>
+	<li>edit profile</li>
+	<li>create gallery / add-delete photos</li>
+	<li>set gallery photos as profile or cover image</li>
+	<li>create post (photos, text)</li>
+	<li>like / comment on post</li>
+	<li>search for users</li>
+	<li>add user as a friend</li>
+	<li>notifications</li>
+</ul>
+
 <hr>
 
 <p>How to use</p>
@@ -34,7 +46,4 @@
 	<li>sudo chgrp -R www-data storage bootstrap/cache</li>
 	<li>sudo chmod -R ug+rwx storage bootstrap/cache</li>
 </ul>
-
-
-
 
