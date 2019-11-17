@@ -38,17 +38,14 @@ class PhotosController extends Controller
             'photo'      => $fileNameToStore
         ]);
 
-        if($photo){
-            return back()->with(['photo_success' => 'New photo created successully!']);
-        }else {
-            return back()->with(['photo_error' => 'Error!']);
-        }
+        return !empty($photo) ? back()->with(['photo_success' => 'New photo created successully!']) : back()->with(['photo_error' => 'Error! Please try again.']);
     }
 
     public function show($id)
     {
         $message = array();
         $photo   = Photo::with('user')->findOrFail($id);
+
         if($photo){
             $message['photo'] = $photo;
         }else {

@@ -5,10 +5,10 @@ Route::get('/', 'PagesController@index')->name('/');
 /* register / login */
 Auth::routes();
 
-/* Network */
-Route::get('/home', 'NetworkController@index')->name('home');
-
 Route::group(['middleware' => ['auth', 'revalidate']], function () {
+	/* Network */
+	Route::get('/home', 'NetworkController@index')->name('home');
+
 	/* Posts */
 	Route::get('post/show/{id}', 'PostsController@show')->name('post/show');
 	Route::post('post/store', 'PostsController@store')->name('post/store');

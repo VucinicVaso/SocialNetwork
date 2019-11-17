@@ -9,11 +9,8 @@ class PagesController extends Controller
 {
 
     public function index(Request $request)
-    {       
-        if(Auth::check()){
-            return redirect('home');
-        }
-        return view('pages.index'); 
+    {
+        return Auth::check() ? redirect('home') : view('pages.index');
     }
 
 }
