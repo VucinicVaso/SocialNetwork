@@ -38,11 +38,7 @@ class PostsController extends Controller
             'user_id' => auth()->user()->id, 
         ]);
 
-        if($post){
-            return back()->with(['success' => 'Post added successfully!']);
-        }else {
-            return back()->with(['error' => 'Error. Please try again!']);
-        }
+        return $post ? back()->with(['success' => 'Post added successfully!']) : back()->with(['error' => 'Error. Please try again!']);
     }
 
     /* show post */
@@ -65,12 +61,8 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         abort_if($post->user_id !== auth()->id(), 403);
-        if($post->delete()){
-            return back()->with(['post-success' => 'Post delete successfully!']);
-        }else{
-            return back()->with(['post-error' => 'Error. Please try again!']);
-        }   
-    }
 
+        return $post->delete() ? back()->with(['post-success' => 'Post delete successfully!']) : back()->with(['post-error' => 'Error. Please try again!']);
+    }
 
 }
