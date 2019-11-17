@@ -90,7 +90,6 @@ class ProfileController extends Controller
                 return back()->with('error', 'Error. Please try again!');
             }                      
         }
-
     }
 
 }

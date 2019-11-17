@@ -1,9 +1,8 @@
 function likePost(id){
 	const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-	let post_id = id;
 
 	const formData = new FormData();
-	formData.append('post_id', post_id);
+	formData.append('post_id', id);
 
 	fetch(ADDRESS + '/like/store', {
 	    headers: {
@@ -24,10 +23,9 @@ function likePost(id){
 
 function unlikePost(id){
 	const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-	let post_id = id;
 
 	const formData = new FormData();
-	formData.append('post_id', post_id);
+	formData.append('post_id', id);
 
 	fetch(ADDRESS + '/like/destroy', {
 	    headers: {

@@ -1,14 +1,15 @@
 <nav class="navbar navbar-expand-md network-navbar text-white">
     <div class="container-fluid">
+
         <a class="network-logo text-white" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
+        
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <i class="fas fa-toggle-on"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

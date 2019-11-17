@@ -8,7 +8,7 @@
 	    @foreach($users as $user)
 	        <div class="card-body row justify-content-between">
             	<a href="{{ url($user->firstname.".".$user->lastname."/".$user->id) }}" class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 d-flex flex-column">
-            		<img src="{{ url('storage/images') }}/{{ $user->profile_image }}" class="img-fluid w-100" style="heigth: 60px !important;"> 
+            		<img src="{{ url('storage/images') }}/{{ $user->profile_image }}" class="img-fluid w-100" style="heigth: 60px !important;">
                     <p class="text-center">{{ $user->firstname }} {{ $user->lastname }}</p>
             	</a>
             <!-- check if user is friend to loggedin user and remove friend -->

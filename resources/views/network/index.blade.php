@@ -20,8 +20,8 @@
         </div>
 
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <!-- users -->
-                @include('network.includes.users')   
+            <!-- users -->
+            @include('network.includes.users')   
         </div>
 
     </div>

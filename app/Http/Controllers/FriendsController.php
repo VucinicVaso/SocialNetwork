@@ -44,7 +44,6 @@ class FriendsController extends Controller
     public function show()
     {
         $friends = Friend::friendsList(auth()->user()->id);
-
         $data = [
             'friends' => $friends
         ];

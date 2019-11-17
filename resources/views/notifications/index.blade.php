@@ -13,7 +13,7 @@
 	        			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card">
 	        				<div class="card-body d-flex flex-column">
 	        					<p class="p-2">
-	        						<a href="{{ url($comment->firstname.".".$comment->lastname."/".$comment->user_id) }}">{{ $comment->firstname }} {{ $comment->lastname }}</a>  commented on your post
+	        						<a href="{{ url($comment->firstname.".".$comment->lastname."/".$comment->user_id) }}">{{ $comment->firstname }} {{ $comment->lastname }}</a> commented on your post
 	        					</p>
 	        					<p class="p-2">{{ $comment->created_at }}</p>
 	        					<div class="p-2">
