@@ -31,10 +31,10 @@ class ProfileController extends Controller
                 'month'     => '',
                 'year'      => '',
                 'gender'    => 'required|min:4|max:10',
-                'city'    => 'required|min:3|max:255',
-                'country' => 'required|min:3|max:255',
-                'status'  => 'required|min:3|max:255',
-                'bio'     => 'required|min:5|max:255',                
+                'city'      => 'required|min:3|max:255',
+                'country'   => 'required|min:3|max:255',
+                'status'    => 'required|min:3|max:255',
+                'bio'       => 'required|min:5|max:255',                
             ]);    
 
             $newdate = "";
@@ -57,12 +57,8 @@ class ProfileController extends Controller
                 'bio'       => $request->input('bio'),                
                 'email'     => $request->input('email'),     
             ]);         
-            
-            if($user){
-                return back()->with('success', 'Profile updated successfully!');
-            }else{
-                return back()->with('error', 'Error. Please try again!');
-            }
+
+            return $user === 1 ? back()->with('success', 'Profile updated successfully!') : back()->with('error', 'Error. Please try again!');
         }
 
         if($type === "password"){
@@ -80,15 +76,9 @@ class ProfileController extends Controller
                 'confirmpassword' => 'required|min:7|max:14|same:newpassword',
             ]);  
             
-            $password = $user->update([
-                'password' => Hash::make($request->input('newpassword'))
-            ]);
-
-            if($password){
-                return back()->with('success', 'Password updated successfully!');
-            }else{
-                return back()->with('error', 'Error. Please try again!');
-            }                      
+            $password = $user->update([ 'password' => Hash::make($request->input('newpassword')) ]);
+            
+            return $password === 1 ? back()->with('success', 'Password updated successfully!') : back()->with('error', 'Error. Please try again!');
         }
     }
 

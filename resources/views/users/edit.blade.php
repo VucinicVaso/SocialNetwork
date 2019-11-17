@@ -7,8 +7,8 @@
     @include('users.includes.navbar')
 
     <div class="row justify-content-center mt-2">
-        
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            
             <div class="card">
                 <div class="card-header d-flex flex-column">
                     <h2 class="p-2"><i class="fas fa-user-edit"></i> Settings</h2>
@@ -211,9 +211,7 @@
                 </div>                
             </div>
 
-
         </div>
-
     </div>
 
 </div>
