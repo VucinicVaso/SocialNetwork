@@ -12,20 +12,11 @@ class Notification extends Model
         'notification_from', 'user_id', 'target', 'type', 'status'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'notification_from', 'id');
-    }
+    public function user() { return $this->belongsTo('App\User', 'notification_from', 'id'); }
 
-    public function post()
-    {
-        return $this->belongsTo('App\Post', 'target', 'id');
-    }
+    public function post() { return $this->belongsTo('App\Post', 'target', 'id'); }
 
-    public function comment()
-    {
-       return $this->belongsTo('App\Comment', 'notification_from', 'user_id');
-    }
+    public function comment() { return $this->belongsTo('App\Comment', 'notification_from', 'user_id'); }
 
     public static function get_likes($user)
     {

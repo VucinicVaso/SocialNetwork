@@ -12,20 +12,11 @@ class Comment extends Model
         'comment', 'post_id', 'user_id',
     ];
 
-	public function post()
-	{
-		return $this->belongsTo('App\Post');
-	}
+	public function post() { return $this->belongsTo('App\Post'); }
 
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
+	public function user() { return $this->belongsTo('App\User'); }
 
-	public function notifications()
-	{
-		return $this->HasOne('App\Notification', 'target', 'post_id');
-	}
+	public function notifications() { return $this->HasOne('App\Notification', 'target', 'post_id'); }
 
     public static function get_comment($from, $target, $created_at)
     {

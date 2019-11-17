@@ -12,25 +12,13 @@ class Post extends Model
         'body', 'images', 'user_id',
     ];
 
-    public function user()
-    {
-    	return $this->belongsTo('App\User');
-    }
+    public function user() { return $this->belongsTo('App\User'); }
 
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
+    public function comments() { return $this->hasMany('App\Comment'); }
 
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
+    public function likes() { return $this->hasMany('App\Like'); }
 
-    public function notifications()
-    {
-        return $this->hasMany('App\Notification', 'target', 'id');
-    }
+    public function notifications() { return $this->hasMany('App\Notification', 'target', 'id'); }
 
     public static function postComments($id)
     {

@@ -39,40 +39,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function friends()
-    {
-        return $this->hasMany('App\Friend');
-    }
+    public function friends() { return $this->hasMany('App\Friend'); }
 
-    public function posts()
-    {
-        return $this->hasMany('App\Post');  
-    }
+    public function posts() { return $this->hasMany('App\Post'); }
 
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');   
-    }
+    public function comments() { return $this->hasMany('App\Comment'); }
 
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
+    public function likes() { return $this->hasMany('App\Like'); }
 
-    public function galleries()
-    {
-        return $this->hasMany('App\Gallery');
-    }
+    public function galleries() { return $this->hasMany('App\Gallery'); }
 
-    public function photos()
-    {
-        return $this->hasMany('App\Photo');
-    }
+    public function photos() { return $this->hasMany('App\Photo'); }
 
-    public function notifications()
-    {
-        return $this->hasMany('App\Notification');
-    }
+    public function notifications() { return $this->hasMany('App\Notification'); }
 
 }
 

@@ -11,14 +11,8 @@ class Photo extends Model
         'user_id', 'gallery_id', 'photo'
     ];
 
-    public function user()
-    {
-    	return $this->belongsTo('App\User');
-    }
+    public function user() { return $this->belongsTo('App\User'); }
 
-    public function gallery()
-    {
-    	return $this->belongsTo('App\Gallery');
-    }
+    public function gallery() { return $this->belongsTo('App\Gallery'); }
 
 }

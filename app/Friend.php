@@ -12,10 +12,7 @@ class Friend extends Model
         'friend_id', 'user_id', 'approved'
     ];
 
-    public function user()
-    {
-    	return $this->belongsTo('App\User');
-    }
+    public function user() { return $this->belongsTo('App\User'); }
 
     public static function friendsRequests()
     {           
