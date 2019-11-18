@@ -37,9 +37,6 @@ class HomeController extends Controller
         return view('users.index')->with($data);
     }
 
-    /* about user page */
-    public function about(){  return view('users.about'); }
-
     /* edit profile */
     public function edit(){ return view('users.edit'); }
 
@@ -106,8 +103,13 @@ class HomeController extends Controller
             
             $password = $user->update([ 'password' => Hash::make($request->input('newpassword')) ]);
             
-            return $password === 1 ? back()->with('success', 'Password updated successfully!') : back()->with('error', 'Error. Please try again!');
+            return $password === 1 
+                ? back()->with('success', 'Password updated successfully!') 
+                : back()->with('error', 'Error. Please try again!');
         }
     }
+
+    /* about user page */
+    public function about(){  return view('users.about'); }
 
 }
