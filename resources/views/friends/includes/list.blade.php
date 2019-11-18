@@ -1,6 +1,7 @@
 @if($users)
     <h3 class="pb-2">People You May Know</h3>
     <hr>
+
     @foreach($users as $user)
     <div class="card mb-1">
         <div class="card-body">
@@ -15,8 +16,9 @@
                         <small class="p-2"><i class="fas fa-heart"></i> {{ $user->status }}</small>                                
                     </div>
                 </div>
+
             <!-- check if user is friend to loggedin user and remove friend -->
-            @if(auth()->user()->friends->where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 1)->first())
+            @if($user->isFollowed === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <form action="{{ route('friends/destroy') }}" method="POST">
                     @csrf
@@ -25,13 +27,15 @@
                     <button type="submit" class="btn btn-info w-100 mt-5"><i class="fas fa-user-minus"></i> Unfriend</button>
                 </form>  
                 </div>
-            <!-- check if loggedin user send request to user and is waiting for response -->    
-            @elseif(App\Friend::where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 0)->first())
+
+            <!-- check if loggedin user send request to user and is waiting for response -->   
+            @elseif($user->isLoggedinUserRequestPending === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                     <a href="{{ url('friends/index/list') }}" class="btn btn-info w-100 mt-5"><i class="fas fa-user-plus"></i>Request pending</a>
                 </div>
+
             <!-- check if user sended you request and accept the request -->
-            @elseif(App\Friend::where('friend_id', auth()->user()->id)->where('user_id', $user->id)->where('approved', 0)->first())
+            @elseif($user->isUserRequestPending === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <form action="{{ route('friends/update') }}" method="POST">
                     @csrf
@@ -40,6 +44,7 @@
                     <button type="submit" class="btn btn-info w-100 mt-5"><i class="fas fa-user-plus"></i> Accept Request</button>
                 </form>
                 </div>
+
             <!-- if user is not friend add friend -->
             @else
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
@@ -58,6 +63,5 @@
         </div>
     </div>
     @endforeach
-    {{ $users->links() }}
 @else
 @endif

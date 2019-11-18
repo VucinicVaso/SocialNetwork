@@ -72,7 +72,7 @@ class HomeController extends Controller
                 $newdate = auth()->user()->age;
             }
 
-            $user = $user->update([
+            $updateProfile = $user->update([
                 'firstname' => $request->input('firstname'),
                 'lastname'  => $request->input('lastname'),
                 'age'       => $newdate,
@@ -84,7 +84,9 @@ class HomeController extends Controller
                 'email'     => $request->input('email'),     
             ]);         
 
-            return $user === 1 ? back()->with('success', 'Profile updated successfully!') : back()->with('error', 'Error. Please try again!');
+            return $updateProfile === 1 
+                ? back()->with('success', 'Profile updated successfully!') 
+                : back()->with('error', 'Error. Please try again!');
         }
 
         if($type === "password"){

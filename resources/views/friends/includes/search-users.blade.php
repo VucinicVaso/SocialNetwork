@@ -13,8 +13,8 @@
                     <small class="p-2">Lives in <i class="fas fa-map-marker-alt"></i> {{ $findU->city }}, {{ $findU->country }}</small>
                     <small class="p-2"><i class="fas fa-heart"></i> {{ $findU->status }}</small>
                 </div>
-            <!-- check if user is friend to loggedin user and remove friend -->
-            @if(auth()->user()->friends->where('friend_id', $findU->id)->where('user_id', auth()->user()->id)->where('approved', 1)->first())
+            <!-- check if user is friend to loggedin user and remove friend -->        
+            @if($findU->isFollowed === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <form action="{{ route('friends/destroy') }}" method="POST">
                     @csrf
@@ -23,13 +23,13 @@
                     <button type="submit" class="btn btn-info w-100 mt-5"><i class="fas fa-user-minus"></i> Unfriend</button>
                 </form>  
                 </div>
-            <!-- check if loggedin user send request to user and if is waiting for response -->    
-            @elseif(App\Friend::where('friend_id', $findU->id)->where('user_id', auth()->user()->id)->where('approved', 0)->first())
+            <!-- check if loggedin user send request to user and if is waiting for response -->   
+            @elseif($findU->isLoggedinUserRequestPending === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                     <a href="{{ url('friends/index/list') }}" class="btn btn-info w-100 mt-5"><i class="fas fa-user-plus"></i>Request pending</a>
                 </div>
             <!-- check if user sended you request and accept the request -->
-            @elseif(App\Friend::where('friend_id', auth()->user()->id)->where('user_id', $findU->id)->where('approved', 0)->first())
+            @elseif($findU->isUserRequestPending === 1)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <form action="{{ route('friends/update') }}" method="POST">
                     @csrf
