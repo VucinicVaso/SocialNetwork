@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 
+<div class="container">
     <!-- navbar -->
     @include('users.includes.navbar')
     <div class="row justify-content-center mt-2">
         
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    @if($friends)
+        @if($friends)
         <div class="row">
         
         @foreach($friends as $friend)
@@ -31,8 +31,8 @@
         @endforeach
 
         </div>
-    @else
-    @endif
+        @else
+        @endif
         </div>
 
     </div>

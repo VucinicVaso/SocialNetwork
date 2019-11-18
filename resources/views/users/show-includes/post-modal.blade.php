@@ -1,5 +1,4 @@
 <script type="text/javascript">
-
 $(document).ready(function(){
 
     let modalBody    = document.querySelector(".modal-body");
@@ -15,13 +14,11 @@ $(document).ready(function(){
             method: 'GET',
         }).then(response => response.json())
         .then(data => {
-            const { post, comments, error } = data;
+            const { post, comments_with_user_data, error } = data;
 
             if(post != ""){
-
-                let images        = JSON.parse(post.images);
-                let countLikes    = post.likes.length;
-                let countComments = comments.length;
+                let images   = JSON.parse(post.images);
+                let comments = post.comments_with_user_data;
                 
                 let postData = `
                     <div class="row">
@@ -74,8 +71,8 @@ $(document).ready(function(){
                             <p class="pt-2">${post.body}</p>
                             <hr>
                             <div class="d-flex p-2 flex-row justify-content-between">
-                                <p><i class="fab fa-gratipay" style="color: #FF1493;"></i> ${countLikes} Likes</p>
-                                <p><i class="far fa-comments" style="color: #FF1493;"></i> ${countComments} Comments</p>
+                                <p><i class="fab fa-gratipay" style="color: #FF1493;"></i> ${post.likes_count} Likes</p>
+                                <p><i class="far fa-comments" style="color: #FF1493;"></i> ${ comments.length } Comments</p>
                             </div>                            
                             <div class="d-flex p-2 flex-row justify-content-between">
                                 <!-- comment form -->
@@ -93,14 +90,14 @@ $(document).ready(function(){
                                 <!-- comments data -->
                         `;
 
-                    if(countComments == 0){ postData += `<p class="col-md-12 text-center alert alert-warning">0 comments</p>`; }else {
+                    if(comments.length == 0){ postData += `<p class="col-md-12 text-center alert alert-warning">0 comments</p>`; }else {
                         postData += comments.map(comment => {
                             return(`
                                 <div class="row pb-1">
-                                    <img src="${ADDRESS}/storage/images/${comment.profile_image}" alt="John Doe" class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 w-100 img-fluid rounded" style="height: 50px;">
+                                    <img src="${ADDRESS}/storage/images/${comment.user.profile_image}" alt="${comment.user.firstname} ${comment.user.lastname}" class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 w-100 img-fluid rounded" style="height: 50px;">
                                     <p class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <a href="${ADDRESS}/${comment.firstname}.${comment.lastname}/${comment.user_id}">
-                                            <b>${comment.firstname} ${comment.lastname}</b>
+                                        <a href="${ADDRESS}/${comment.user.firstname}.${comment.user.lastname}/${comment.user_id}">
+                                            <b>${comment.user.firstname} ${comment.user.lastname}</b>
                                         </a>
                                         <small class='float-left'>${comment.created_at}</small>
                                     </p> 
@@ -116,6 +113,8 @@ $(document).ready(function(){
                     </div>`;
 
                 modalBody.innerHTML = postData;
+            }else {
+                alert(error);
             }
         });
 
@@ -133,4 +132,3 @@ $(document).ready(function(){
         </div>
     </div>
 </div>
-

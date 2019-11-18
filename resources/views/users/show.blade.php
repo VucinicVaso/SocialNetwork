@@ -14,10 +14,8 @@
         </div>
 
         <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-12">
-
             <!-- posts -->
             @include('users.show-includes.posts')
-
         </div>
 
     </div>

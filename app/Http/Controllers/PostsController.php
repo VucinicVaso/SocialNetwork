@@ -45,12 +45,10 @@ class PostsController extends Controller
     public function show($id)
     {
         $message  = array();
-        $post     = Post::with('user')->with('likes')->findOrFail($id);
-        $comments = Post::postComments($id);
-
+        $post     = Post::with('user')->with('commentsWithUserData')->withCount('likes')->findOrFail($id);
+        
         if($post){
-            $message['post']     = $post;
-            $message['comments'] = $comments;
+            $message['post'] = $post;
         }else {
             $message['error'] = "Error. Please try again!";
         }

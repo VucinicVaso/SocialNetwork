@@ -19,20 +19,17 @@ class NetworkController extends Controller
 
     public function index()
     {
-        $users        = User::where('id', "!=", auth()->user()->id)                 
-                        ->take(10)
-                        ->orderBy('id', 'DESC')
-                        ->get();
-        $friendsPosts = Post::whereIn('user_id', auth()->user()->friends->pluck('friend_id'))
+        $data = [
+            'users'        => User::usersList(auth()->user()->id),
+            'friendsPosts' => Post::select('id', 'images', 'user_id', 'created_at')
+                        ->whereIn('user_id', auth()->user()->friends->pluck('friend_id'))
                         ->orWhere('user_id', auth()->user()->id)
                         ->orderBy('id', 'DESC')
                         ->with('user')
-                        ->with('comments')
-                        ->with('likes')
-                        ->paginate(10);
-        $data = [
-            'users'        => $users,
-            'friendsPosts' => $friendsPosts
+                        ->withCount('comments')
+                        ->withCount('likes')
+                        ->withCount('isLiked')
+                        ->paginate(10)
         ];
         return view('network.index')->with($data);
     }

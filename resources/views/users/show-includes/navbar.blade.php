@@ -12,7 +12,7 @@
 
                 <div class="d-flex flex-row p-2 justify-content-end">
                     <!-- unfriend -->
-                    @if(!empty($isFriend) && $isFriend->approved === 1)
+                    @if(!empty($isFriend) && $isFriend->isFollowed === 1)
                         <p class="p-2">
                             <form action="{{ route('friends/destroy') }}" method="POST">
                                 @csrf
@@ -22,7 +22,7 @@
                             </form>                        
                         </p>
                     <!-- accept friend request -->
-                    @elseif(!empty($isFriend) && $isFriend->friend_id === auth()->user()->id && $isFriend->approved === 0)
+                    @elseif(!empty($isFriend) && $isFriend->userRequestPending === 1)
                         <p class="p-2">
                             <form action="{{ route('friends/update') }}" method="POST">
                                 @csrf
@@ -32,12 +32,12 @@
                             </form>
                         </p>
                     <!-- request pending -->
-                    @elseif(App\Friend::where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 0)->first())
+                    @elseif(!empty($isFriend) && $isFriend->loggedinUserRequestPending === 1)
                         <p class="p-2" style="margin-top: -15px; margin-bottom: -10px;">
                             <a href="{{ url('friends/index/list') }}" class="btn btn-info w-100"><i class="fas fa-user-plus"></i>Request pending</a>
                         </p>
                      <!-- add friend --> 
-                    @else
+                    @elseif(empty($isFriend))
                         <p class="p-2">
                             <form action="{{ route('friends/store') }}" method="POST">
                                 @csrf

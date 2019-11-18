@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use DateTime;
 
 /* models */
 use App\User;
@@ -20,44 +23,89 @@ class HomeController extends Controller
     /* loggedin users profile */
     public function index()
     {
-        $posts   = Post::with('user')->with('comments')->with('likes')->where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
-        $friends = Friend::friendsList(auth()->user()->id);
-
     	$data = [
-            'posts'   => $posts,
-            'friends' => $friends
+            'friends' => Friend::friendsList(auth()->user()->id),
+            'posts'   => Post::select('id', 'images', 'user_id', 'created_at')
+                    ->with('user')
+                    ->withCount('comments')
+                    ->withCount('likes')
+                    ->where('user_id', auth()->user()->id)
+                    ->orderBy('id', 'DESC')
+                    ->get()
     	];
 
         return view('users.index')->with($data);
     }
 
-    /* friends profile */
-    public function show($name, $id)
-    {
-        if(auth()->user()->id == $id) {
-            return redirect('profile'); 
-        }else {
-            $user     = User::findOrFail($id);
-            $posts    = Post::with('user')->with('comments')->with('likes')->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
-            $friends  = Friend::friendsList($user->id);
-            $isFriend = Friend::where('friend_id', auth()->user()->id)->where('user_id', $user->id)
-                        ->orWhere('friend_id', $user->id)->where('user_id', auth()->user()->id)->first();
-               
-            $data = [
-                'user'     => $user,
-                'posts'    => $posts,
-                'friends'  => $friends,
-                'isFriend' => $isFriend
-            ];
-
-            return view('users.show')->with($data);     
-        }   
-    }
-
     /* about user page */
-    public function about()
+    public function about(){  return view('users.about'); }
+
+    /* edit profile */
+    public function edit(){ return view('users.edit'); }
+
+    /* update profile */
+    public function update(Request $request, $type)
     {
-        return view('users.about');
+        $user = User::find(auth()->user()->id);
+
+        if($type === "user"){
+            $this->validate($request, [
+                'firstname' => 'required|string|min:3|max:30',
+                'lastname'  => 'required|string|min:3|max:30',
+                'email'     => 'required|email',
+                'day'       => '',
+                'month'     => '',
+                'year'      => '',
+                'gender'    => 'required|min:4|max:10',
+                'city'      => 'required|min:3|max:255',
+                'country'   => 'required|min:3|max:255',
+                'status'    => 'required|min:3|max:255',
+                'bio'       => 'required|min:5|max:255',                
+            ]);    
+
+            $newdate = "";
+            if(!empty($request->input('day')) && !empty($request->input('month')) && !empty($request->input('year'))){
+                $formatDate = $data['year']."-".$data['month']."-".$data['day']; 
+                $date       = new DateTime($formatDate); 
+                $newdate    = $date->format("Y-m-d");
+            }else {
+                $newdate = auth()->user()->age;
+            }
+
+            $user = $user->update([
+                'firstname' => $request->input('firstname'),
+                'lastname'  => $request->input('lastname'),
+                'age'       => $newdate,
+                'gender'    => $request->input('gender'),
+                'city'      => $request->input('city'),
+                'country'   => $request->input('country'),
+                'status'    => $request->input('status'),
+                'bio'       => $request->input('bio'),                
+                'email'     => $request->input('email'),     
+            ]);         
+
+            return $user === 1 ? back()->with('success', 'Profile updated successfully!') : back()->with('error', 'Error. Please try again!');
+        }
+
+        if($type === "password"){
+            $this->validate($request, [
+                'password'        => ['required', 'min:7', 'max:14', function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        return $fail(__('The current password is incorrect.'));
+                    }
+                }],
+                'newpassword'     => ['required', 'min:7', 'max:14', function ($attribute, $value, $fail) use ($user) {
+                    if (Hash::check($value, $user->password)) {
+                        return $fail(__('Password is already taken.'));
+                    }
+                }],
+                'confirmpassword' => 'required|min:7|max:14|same:newpassword',
+            ]);  
+            
+            $password = $user->update([ 'password' => Hash::make($request->input('newpassword')) ]);
+            
+            return $password === 1 ? back()->with('success', 'Password updated successfully!') : back()->with('error', 'Error. Please try again!');
+        }
     }
 
 }

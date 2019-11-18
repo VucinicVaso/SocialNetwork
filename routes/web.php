@@ -21,8 +21,6 @@ Route::group(['middleware' => ['auth', 'revalidate']], function () {
 	Route::post('like/store', 'LikesController@store');
 	Route::post('like/destroy', 'LikesController@destroy');
 
-	/* Interests */
-
 	/* Messages */
 
 	/* Notifications */
@@ -48,12 +46,12 @@ Route::group(['middleware' => ['auth', 'revalidate']], function () {
 	Route::post('friends/store', 'FriendsController@store')->name('friends/store');
 	Route::delete('friends/destroy', 'FriendsController@destroy')->name('friends/destroy');
 
-	/* profile */
-	Route::get('profile/edit', 'ProfileController@edit')->name('profile/edit');
-	Route::put('profile/update/{type}', 'ProfileController@update')->where('type', '[A-Za-z]+');
-
-	/* User */
+	/* Profile */
 	Route::get('profile', 'HomeController@index')->name('profile');
 	Route::get('/profile/about', 'HomeController@about')->name('profile/about');
-	Route::get('/{name}/{user}', 'HomeController@show');
+	Route::get('profile/edit', 'HomeController@edit')->name('profile/edit');
+	Route::put('profile/update/{type}', 'HomeController@update')->where('type', '[A-Za-z]+');
+
+	/* User */
+	Route::get('/{name}/{user}', 'UsersController@show');
 });

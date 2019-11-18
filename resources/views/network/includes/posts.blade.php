@@ -9,8 +9,6 @@
 
     @foreach($friendsPosts as $post)
 
-        @if(auth()->user()->friends->where('friend_id', $post->user->id)->where('user_id', auth()->user()->id)->where('approved', '!=', 0)->first() || $post->user->id === auth()->user()->id)
-
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card mb-2">
 
             <div class="card-header d-flex flex-row justify-content-start">
@@ -18,7 +16,7 @@
                     <img src="{{ url('storage/images') }}/{{ $post->user->profile_image }}" class="img-fluid" style="width:50%; height: 35px;">
                     {{ $post->user->firstname }} {{ $post->user->lastname }}
                     <small class="text-center">{{ $post->created_at }}</small>
-                </div>            
+                </div>
             </div><!-- /card-header -->
 
             <div class="card-body">
@@ -35,14 +33,14 @@
                 </div>
                 
                 <div class="d-flex flex-row p-2 justify-content-start">
-                    <p class="p-2"><i class="fab fa-gratipay" style="color: #FF1493;"></i> {{ count($post->likes) }} Likes</p>
-                    <p class="p-2"><i class="far fa-comments" style="color: #FF1493;"></i> {{ count($post->comments) }} Comments</p>
+                    <p class="p-2"><i class="fab fa-gratipay" style="color: #FF1493;"></i> {{ $post->likes_count }} Likes</p>
+                    <p class="p-2"><i class="far fa-comments" style="color: #FF1493;"></i> {{ $post->comments_count }} Comments</p>
                 </div>
 
                 <div class="row d-flex flex-row justify-content-between">
                     <div class="p-2">
                         <script src="{{ asset('js/like.js') }}"></script>
-                        @if($post->likes->where('post_id', $post->id)->where('user_id', auth()->user()->id)->first())
+                        @if($post->is_liked_count === 1)
                             <button class="btn btn-link btn-unlike" onclick="unlikePost({{ $post->id }});"><i class="far fa-thumbs-down"></i> Unlike</button>
                         @else
                             <button class="btn btn-link btn-like" onclick="likePost({{ $post->id }});"><i class="far fa-thumbs-up"></i> Like</button>
@@ -64,6 +62,7 @@
                     <p class="text-center alert alert-danger">{{ session('comment-error') }}</p>    
                 @else
                 @endif
+
                 <form action="{{ route('comment/store') }}" method="POST">
                 @csrf
                 <div class="form-group row justify-content-between">
@@ -81,9 +80,6 @@
             </div><!-- /card-footer -->
 
         </div>
-
-        @else
-        @endif
 
     @endforeach
     

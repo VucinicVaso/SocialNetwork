@@ -32,14 +32,14 @@
                 </div>
                 
                 <div class="d-flex flex-row p-2 justify-content-start">
-                    <p class="p-2"><i class="fab fa-gratipay" style="color: #FF1493;"></i> {{ count($post->likes) }} Likes</p>
-                    <p class="p-2"><i class="far fa-comments" style="color: #FF1493;"></i> {{ count($post->comments) }} Comments</p>
+                    <p class="p-2"><i class="fab fa-gratipay" style="color: #FF1493;"></i> {{ $post->likes_count }} Likes</p>
+                    <p class="p-2"><i class="far fa-comments" style="color: #FF1493;"></i> {{ $post->comments_count }} Comments</p>
                 </div>
 
-                <div class="row d-flex flex-row justify-content-between">
+                <div class="row d-flex flex-row flex-start">
                     <div class="p-2">
                         <script src="{{ asset('js/like.js') }}"></script>
-                        @if($post->likes->where('post_id', $post->id)->where('user_id', auth()->user()->id)->first())
+                        @if($post->is_liked_count === 1)
                             <button class="btn btn-link btn-unlike" onclick="unlikePost({{ $post->id }});"><i class="far fa-thumbs-down"></i> Unlike</button>
                         @else
                             <button class="btn btn-link btn-like" onclick="likePost({{ $post->id }});"><i class="far fa-thumbs-up"></i> Like</button>
@@ -47,9 +47,6 @@
                     </div>
                     <div class="p-2">
                         <button class="btn btn-link text-center"><i class="far fa-comments"></i> Comment</button>
-                    </div>
-                    <div class="p-2">
-                        <button class="btn btn-link text-center"><i class="fas fa-share"></i> Share</button>
                     </div>
                 </div>
             </div><!-- /card-body -->

@@ -33,11 +33,8 @@ class NotificationsController extends Controller
         abort_if($notification->user_id !== auth()->id(), 403);
         $comment = Comment::get_comment($notification->notification_from, $notification->target, $notification->created_at);
         $notification->update([ 'status' => 1 ]);
-        $data = [
-            'comment' => $comment
-        ];
-        return view("notifications.index")->with($data);
-        
+        $data = [ 'comment' => $comment ];
+        return view("notifications.index")->with($data);   
     }
 
 }

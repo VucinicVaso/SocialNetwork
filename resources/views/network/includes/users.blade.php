@@ -11,8 +11,9 @@
             		<img src="{{ url('storage/images') }}/{{ $user->profile_image }}" class="img-fluid w-100" style="heigth: 60px !important;">
                     <p class="text-center">{{ $user->firstname }} {{ $user->lastname }}</p>
             	</a>
+            
             <!-- check if user is friend to loggedin user and remove friend -->
-            @if(auth()->user()->friends->where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 1)->first())
+            @if($user->isFollowed === 1)
                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                 <form action="{{ route('friends/destroy') }}" method="POST">
                     @csrf
@@ -21,13 +22,15 @@
                     <button type="submit" class="btn btn-info w-100 mt-1"><i class="fas fa-user-minus"></i> Unfriend</button>
                 </form>  
                 </div>
-            <!-- check if loggedin user send request to user and is waiting for response -->    
-            @elseif(App\Friend::where('friend_id', $user->id)->where('user_id', auth()->user()->id)->where('approved', 0)->first())
+
+            <!-- check if loggedin user send request to user and is waiting for response -->
+            @elseif($user->isLoggedinUserRequestPending === 1)
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                     <a href="{{ url('friends/index/list') }}" class="btn btn-info w-100 mt-1"><i class="fas fa-user-plus"></i>Request pending</a>
                 </div>
+            
             <!-- check if user has send you a request and accept the request -->
-            @elseif(App\Friend::where('friend_id', auth()->user()->id)->where('user_id', $user->id)->where('approved', 0)->first())    
+            @elseif($user->isUserRequestPending === 1)    
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                     <form action="{{ route('friends/update') }}" method="POST">
                         @csrf
@@ -36,6 +39,7 @@
                         <button type="submit" class="btn btn-info w-100 mt-1"><i class="fas fa-user-plus"></i> Accept Request</button>
                     </form>
                 </div>
+            
             <!-- if user is not your friend add friend -->
             @else
                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
@@ -50,7 +54,8 @@
                 @else
                 @endif
             @endif
-	    @endforeach
+	    
+        @endforeach
 	@else
 	    <p class="text-center alert alert-warning">0 users.</p>
 	@endif		

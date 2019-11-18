@@ -53,5 +53,34 @@ class User extends Authenticatable
 
     public function notifications() { return $this->hasMany('App\Notification'); }
 
+    public static function usersList($loggedInUser) 
+    {
+        return DB::table('users AS u')
+            ->leftJoin('friends AS f1', 'u.id', '=', 'f1.friend_id')
+            ->leftJoin('friends AS f2', 'u.id', '=', 'f2.user_id')
+            ->where('u.id', '!=', $loggedInUser)
+            ->selectRaw('u.id, u.firstname, u.lastname, u.profile_image,
+                CASE WHEN (f1.id IS NOT NULL AND f1.user_id = '.$loggedInUser.' AND f1.approved = 1) THEN 1 ELSE 0 END AS isFollowed,
+                CASE WHEN (f1.id IS NOT NULL AND f1.user_id = '.$loggedInUser.' AND f1.approved = 0) THEN 1 ELSE 0 END AS isLoggedinUserRequestPending,
+                CASE WHEN (f2.id IS NOT NULL AND f2.friend_id = '.$loggedInUser.' AND f2.approved = 0) THEN 1 ELSE 0 END AS isUserRequestPending  
+                ')
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    public static function isFriend($user, $loggedInUser)
+    {
+        return DB::table('users AS u')
+            ->leftJoin('friends AS f', 'u.id', '=', 'f.friend_id')
+            ->where('f.friend_id', $user)
+            ->orWhere('f.user_id', $user)
+            ->selectRaw('
+                CASE WHEN (f.id IS NOT NULL AND f.user_id = '.$loggedInUser.' AND f.approved = 1 AND f.approved = 1 OR f.friend_id = '.$loggedInUser.' AND f.approved = 1) THEN 1 ELSE 0 END AS isFollowed,
+                CASE WHEN (f.id IS NOT NULL AND f.user_id = '.$loggedInUser.' AND f.approved = 0) THEN 1 ELSE 0 END AS loggedinUserRequestPending,
+                CASE WHEN (f.id IS NOT NULL AND f.friend_id = '.$loggedInUser.' AND f.approved = 0) THEN 1 ELSE 0 END AS userRequestPending
+                ')
+            ->first();
+    }
+
 }
 

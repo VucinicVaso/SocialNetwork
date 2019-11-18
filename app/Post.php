@@ -12,21 +12,16 @@ class Post extends Model
         'body', 'images', 'user_id',
     ];
 
-    public function user() { return $this->belongsTo('App\User'); }
+    public function user() { return $this->belongsTo('App\User')->select('id', 'firstname', 'lastname', 'profile_image'); }
 
-    public function comments() { return $this->hasMany('App\Comment'); }
+    public function comments() { return $this->hasMany('App\Comment')->select('id', 'post_id', 'user_id', 'comment', 'created_at'); }
+
+    public function commentsWithUserData() { return $this->comments()->with('user'); }
 
     public function likes() { return $this->hasMany('App\Like'); }
 
-    public function notifications() { return $this->hasMany('App\Notification', 'target', 'id'); }
+    public function isLiked() { return $this->likes()->where('user_id','=', auth()->user()->id); }
 
-    public static function postComments($id)
-    {
-        return DB::table('posts')
-            ->join('comments', 'posts.id', '=', 'comments.post_id')
-            ->join('users', 'comments.user_id', '=', 'users.id')
-            ->where('posts.id', $id)
-            ->get();
-    }
+    public function notifications() { return $this->hasMany('App\Notification', 'target', 'id'); }
 
 }
