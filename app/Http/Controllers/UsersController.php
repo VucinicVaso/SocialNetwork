@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
  
     /* user's profile */
-    public function show($name, $id)
+    public function index($name, $id)
     {
         if(auth()->user()->id == $id) {
             return redirect('profile'); 

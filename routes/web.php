@@ -48,10 +48,10 @@ Route::group(['middleware' => ['auth', 'revalidate']], function () {
 
 	/* Profile */
 	Route::get('profile', 'HomeController@index')->name('profile');
+	Route::get('profile/about', 'HomeController@about')->name('profile/about');
 	Route::get('profile/edit', 'HomeController@edit')->name('profile/edit');
 	Route::put('profile/update/{type}', 'HomeController@update')->where('type', '[A-Za-z]+');
-	Route::get('/profile/about', 'HomeController@about')->name('profile/about');
 
 	/* User */
-	Route::get('/{name}/{user}', 'UsersController@show');
+	Route::get('{name}/{user}', 'UsersController@index');
 });
